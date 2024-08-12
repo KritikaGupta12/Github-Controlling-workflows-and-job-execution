@@ -9,7 +9,7 @@ on: [workflow_dispatch]
 
 jobs:
   trigger-workflow:
-    uses: ./.github/workflows/main.yml
+    uses: ./.github/workflows/main5_Reusable workflow mysql.yml
     with:
       mysql-version: '8.0'
       new-database: 'my_dynamic_db'
