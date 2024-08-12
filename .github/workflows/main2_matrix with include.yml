@@ -24,8 +24,8 @@ jobs:
             animal: cat
 
     steps:
-      - name: Print matric combination
-        run: echo "${{ matrix.fruit }} - ${{ matrix.animal }} - ${{ matrix.shape }}
+      - name: Print matrix combination
+        run: echo "${{ matrix.fruit }} - ${{ matrix.animal }} - ${{ matrix.shape }}"
 
 # Final:
 # will result in six jobs with the following matrix combinations:
