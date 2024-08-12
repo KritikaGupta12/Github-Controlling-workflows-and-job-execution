@@ -8,9 +8,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-      # this will have 3x2 = 6 combinations so 6 jobs
         os: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: [3.11, 3.12]
+        python-version: [3.11, 3.12]  # this results in 3*2 = 6 combinations so 6 jobs
         
     steps:
       - name: Checkout code
@@ -47,7 +46,6 @@ jobs:
         with:
           name: build-artifacts
           path: build/
-
 
   download:
     runs-on: ubuntu-latest
