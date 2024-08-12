@@ -1,4 +1,4 @@
-name: Using matrix - Python script
+name: Matrix - Python script
 
 # on: [push, pull_request]
 on: [workflow_dispatch]
