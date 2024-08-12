@@ -1,0 +1,39 @@
+name: Matrix with includes
+
+on: [workflow_dispatch]
+
+jobs:
+  fruits:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        fruit: [apple, pear]  # here we have 2x2=4 combinations
+        animal: [cat, dog]
+        include:
+          - color: green  # this is added to all the combinations
+          
+          - color: pink  # this will overwrite green and include color pink wherever we have animal cat
+            animal: cat
+            
+          - fruit: apple  # this will include shape circle wherever we have fruit apple
+            shape: circle
+            
+          - fruit: banana  # this will be a seperate job
+          
+          - fruit: banana  # this will include banana wherever we have animal cat
+            animal: cat
+
+# Final:
+# will result in six jobs with the following matrix combinations:
+  # {fruit: apple, animal: cat, color: pink, shape: circle}
+  # {fruit: apple, animal: dog, color: green, shape: circle}
+  # {fruit: pear, animal: cat, color: pink}
+  # {fruit: pear, animal: dog, color: green}
+  # {fruit: banana}
+  # {fruit: banana, animal: cat}
+
+# {color: green} is added to all of the original matrix combinations because it can be added without overwriting any part of the original combinations.
+# {fruit: banana} cannot be added to any original matrix combination without overwriting a value, so it is added as an additional matrix combination.
+# {color: pink, animal: cat} adds color:pink only to the original matrix combinations that include animal: cat. This overwrites the color: green that was added by the previous include entry.
+# {fruit: apple, shape: circle} adds shape: circle only to the original matrix combinations that include fruit: apple.
+# {fruit: banana, animal: cat} cannot be added to any original matrix combination without overwriting a value, so it is added as an additional matrix combination. It does not add to the {fruit: banana} matrix combination because that combination was not one of the original matrix combinations.
