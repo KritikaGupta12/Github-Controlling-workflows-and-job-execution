@@ -1,4 +1,4 @@
-name: Matrix with includes
+name: Matrix with includes - fruits
 
 on: [workflow_dispatch]
 
